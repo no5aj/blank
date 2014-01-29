@@ -1,101 +1,77 @@
 <?php
 	function blank_setup() {
-		load_theme_textdomain( 'blank', get_template_directory() . '/languages' );
-		add_theme_support( 'automatic-feed-links' );	
-		add_theme_support( 'structured-post-formats', array( 'link', 'video' ) );
-		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'quote', 'status' ) );
-		register_nav_menu( 'primary', __( 'Navigation Menu', 'html5reset' ) );
-		add_theme_support( 'post-thumbnails' );
+		add_theme_support('automatic-feed-links');	
+		register_nav_menu('primary', __('Navigation Menu', 'blank'));
+		add_theme_support('post-thumbnails');
 	}
-	add_action( 'after_setup_theme', 'blank_setup' );
+	add_action('after_setup_theme', 'blank_setup');
 	
 	// Scripts & Styles (based on twentythirteen: http://make.wordpress.org/core/tag/twentythirteen/)
 	function blank_scripts_styles() {
 		global $wp_styles;
 
 		// Load Comments	
-		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+		if(is_singular() && comments_open() && get_option( 'thread_comments' ))
 			wp_enqueue_script( 'comment-reply' );
 	
 		// Load Stylesheets
-//		wp_enqueue_style( 'html5reset-reset', get_template_directory_uri() . '/reset.css' );
-//		wp_enqueue_style( 'html5reset-style', get_stylesheet_uri() );
+//		wp_enqueue_style( 'blank-reset', get_template_directory_uri() . '/reset.css' );
+//		wp_enqueue_style( 'blank-style', get_stylesheet_uri() );
 	
 		// Load IE Stylesheet.
-//		wp_enqueue_style( 'html5reset-ie', get_template_directory_uri() . '/css/ie.css', array( 'html5reset-style' ), '20130213' );
-//		$wp_styles->add_data( 'html5reset-ie', 'conditional', 'lt IE 9' );
+//		wp_enqueue_style( 'blank-ie', get_template_directory_uri() . '/css/ie.css', array( 'blank-style' ), '20130213' );
+//		$wp_styles->add_data( 'blank-ie', 'conditional', 'lt IE 9' );
 
 		// Modernizr
 		// This is an un-minified, complete version of Modernizr. Before you move to production, you should generate a custom build that only has the detects you need.
-		// wp_enqueue_script( 'html5reset-modernizr', get_template_directory_uri() . '/_/js/modernizr-2.6.2.dev.js' );
+		// wp_enqueue_script( 'blank-modernizr', get_template_directory_uri() . '/_/js/modernizr-2.6.2.dev.js' );
 		
 	}
-	add_action( 'wp_enqueue_scripts', 'html5reset_scripts_styles' );
+	add_action('wp_enqueue_scripts', 'blank_scripts_styles');
 	
 	// WP Title (based on twentythirteen: http://make.wordpress.org/core/tag/twentythirteen/)
-	function blank_wp_title( $title, $sep ) {
+	function blank_wp_title($title, $sep) {
 		global $paged, $page;
 	
-		if ( is_feed() )
+		if(is_feed())
 			return $title;
 	
 //		 Add the site name.
-		$title .= get_bloginfo( 'name' );
+		$title .= ' '.$sep.' '.get_bloginfo('name');
 	
 //		 Add the site description for the home/front page.
-		$site_description = get_bloginfo( 'description', 'display' );
-		if ( $site_description && ( is_home() || is_front_page() ) )
+		$site_description = get_bloginfo('description', 'display');
+		if ($site_description && (is_home() || is_front_page()))
 			$title = "$title $sep $site_description";
 	
 //		 Add a page number if necessary.
-		if ( $paged >= 2 || $page >= 2 )
-			$title = "$title $sep " . sprintf( __( 'Page %s', 'blank' ), max( $paged, $page ) );
-//FIX
-//		if (function_exists('is_tag') && is_tag()) {
-//		   single_tag_title("Tag Archive for &quot;"); echo '&quot; - '; }
-//		elseif (is_archive()) {
-//		   wp_title(''); echo ' Archive - '; }
-//		elseif (is_search()) {
-//		   echo 'Search for &quot;'.wp_specialchars($s).'&quot; - '; }
-//		elseif (!(is_404()) && (is_single()) || (is_page())) {
-//		   wp_title(''); echo ' - '; }
-//		elseif (is_404()) {
-//		   echo 'Not Found - '; }
-//		if (is_home()) {
-//		   bloginfo('name'); echo ' - '; bloginfo('description'); }
-//		else {
-//		    bloginfo('name'); }
-//		if ($paged>1) {
-//		   echo ' - page '. $paged; }
-	
+		if ($paged >= 2 || $page >= 2)
+			$title = "$title $sep ".sprintf(__('Page %s', 'blank'), max($paged, $page));
 		return $title;
 	}
-	add_filter( 'wp_title', 'blank_wp_title', 10, 2 );
-
-
-
+	add_filter('wp_title', 'blank_wp_title', 10, 2);
 
 //OLD STUFF BELOW
 
 
 	// Load jQuery
-	if ( !function_exists( 'core_mods' ) ) {
+	if(!function_exists('core_mods')) {
 		function core_mods() {
-			if ( !is_admin() ) {
-				wp_deregister_script( 'jquery' );
-				wp_register_script( 'jquery', ( "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ), false);
-				wp_enqueue_script( 'jquery' );
+			if(!is_admin()) {
+				wp_deregister_script('jquery');
+				wp_register_script('jquery', ('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'), false);
+				wp_enqueue_script('jquery');
 			}
 		}
-		add_action( 'wp_enqueue_scripts', 'core_mods' );
+		add_action('wp_enqueue_scripts', 'core_mods');
 	}
 
 	// Clean up the <head>, if you so desire.
-	//	function removeHeadLinks() {
-	//    	remove_action('wp_head', 'rsd_link');
-	//    	remove_action('wp_head', 'wlwmanifest_link');
-	//    }
-	//    add_action('init', 'removeHeadLinks');
+	function removeHeadLinks() {
+		remove_action('wp_head', 'rsd_link');
+		remove_action('wp_head', 'wlwmanifest_link');
+	}
+	add_action('init', 'removeHeadLinks');
 
 	// Custom Menu
 	register_nav_menu( 'primary', __( 'Navigation Menu', 'blank' ) );
