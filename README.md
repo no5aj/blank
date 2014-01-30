@@ -9,10 +9,10 @@ Grunt
 ##Installation
 
 ###Step 1: Clone Blank Repository
-git clone https://github.com/no5aj/blank.git <your-project-name>
+git clone https://github.com/no5aj/blank.git `your-project-name`
 
 ###Step 2: Clone WordPress Repository
-cd <your-project-name>  
+cd `your-project-name`  
 git submodule init  
 git submodule update
 
