@@ -3,7 +3,6 @@
 		</footer>
 </div>
 <?php wp_footer(); ?>
-<script src="<?php bloginfo('template_directory'); ?>/static/js/functions.min.js"></script>
 <!--
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
