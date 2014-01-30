@@ -8,20 +8,20 @@ Grunt
 
 ##Installation
 
-###Step 1: Clone Blank Repository
+###Step 1: Clone blank repository
 git clone https://github.com/no5aj/blank.git `<your-project-name>`
 
-###Step 2: Clone WordPress Repository
+###Step 2: Clone WordPress repository
 cd `<your-project-name>`  
 git submodule init  
 git submodule update
 
-###Step 3: Checkout Required Version of WordPress
+###Step 3: Checkout required version of WordPress
 cd wordpress  
 git checkout 3.8.1  
 cd ..
 
-###Step 4: Install Grunt Plugins
+###Step 4: Install Grunt plugins
 cd wp-content/themes/blank  
 npm install
 
