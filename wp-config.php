@@ -15,24 +15,40 @@
  */
 define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
 define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress/');
-
-define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
+define('WP_CONTENT_DIR', dirname(__FILE__) . '/wp-content');
 define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
-
 define('WP_DEFAULT_THEME', 'blank');
 
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define('DB_NAME', 'blank');
+// Define site host
+if(isset($_SERVER['HTTP_X_FORWARDED_HOST']) && !empty($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+	$hostname = $_SERVER['HTTP_X_FORWARDED_HOST'];
+} else {
+	$hostname = $_SERVER['HTTP_HOST'];
+}
 
-/** MySQL database username */
-define('DB_USER', 'root');
-
-/** MySQL database password */
-define('DB_PASSWORD', '');
-
-/** MySQL hostname */
-define('DB_HOST', 'localhost');
+// Set environment based on hostname
+switch($hostname) {
+  case 'blank.local':
+    define('DB_NAME', '');
+		define('DB_USER', 'root');
+		define('DB_PASSWORD', '');
+		define('DB_HOST', 'localhost');
+		//define('BUGHERD_API_KEY', '');
+    break;
+  case 'staging.blank.com':
+    define('DB_NAME', '');
+		define('DB_USER', 'root');
+		define('DB_PASSWORD', '');
+		define('DB_HOST', 'localhost');
+		//define('BUGHERD_API_KEY', '');
+    break;
+  case 'www.blank.com':
+  default:
+    define('DB_NAME', '');
+		define('DB_USER', 'root');
+		define('DB_PASSWORD', '');
+		define('DB_HOST', 'localhost');
+}
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');

@@ -4,7 +4,6 @@
 
 ##Requirements
 Node.js  
-Grunt
 
 ##Installation
 
@@ -21,10 +20,9 @@ cd wordpress
 git checkout 3.8.1  
 cd ..
 
-###Step 4: Install Grunt plugins
+###Step 4: Install Node packages
 cd wp-content/themes/blank  
 npm install
 
 ##Reference
 [http://davidwinter.me/articles/2012/04/09/install-and-manage-wordpress-with-git/](http://davidwinter.me/articles/2012/04/09/install-and-manage-wordpress-with-git/)  
-[http://mattbanks.me/grunt-wordpress-development-deployments/](http://davidwinter.me/articles/2012/04/09/install-and-manage-wordpress-with-git/)

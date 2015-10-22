@@ -1,0 +1,38 @@
+@import 'normalize';
+@import 'fonts';
+@import 'variables';
+@import 'mixins';
+
+.clearfix:before,
+.clearfix:after {
+  content:" ";
+  display:table;
+}
+.clearfix:after {
+  clear:both;
+}
+
+html {
+	height:100%;
+	box-sizing:border-box;
+	text-rendering:optimizeLegibility;
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+*, *:before, *:after { box-sizing:inherit; }
+body { height:100%; background:$white; font-size:12px; line-height:18px; }
+a { text-decoration:none; }
+a:hover {  }
+p {  }
+h1 {  }
+h2 {  }
+h3 {  }
+h4 {  }
+h5 {  }
+h6 {  }
+
+#wrap {  }
+#wrap header {  }
+#wrap footer {  }
