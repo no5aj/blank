@@ -10,21 +10,15 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php wp_head(); ?>
-	<!--
-  <script type='text/javascript'>
-	(function (d, t) {
-		var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-		bh.type = 'text/javascript';
-		bh.src = '//www.bugherd.com/sidebarv2.js?apikey=';
-		s.parentNode.insertBefore(bh, s);
-		})(document, 'script');
-	</script>
-	-->
 </head>
 <body <?php body_class(); ?>>
 <div id="wrap">
 	<header role="banner">
+		<?php if(is_front_page()): ?>
 		<h1><a href="/"><?php bloginfo( 'name' ); ?></a></h1>
+		<?php else: ?>
+		<h2><a href="/"><?php bloginfo( 'name' ); ?></a></h2>
+		<?php endif; ?>
 	</header>
 	<nav id="nav" role="navigation">
 		<?php wp_nav_menu( array('menu' => 'primary') ); ?>

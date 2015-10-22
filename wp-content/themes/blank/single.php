@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+	<?php if(have_posts()): while(have_posts()): the_post(); ?>
 		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 			<div class="entry-content">
@@ -8,9 +8,9 @@
 				<?php the_tags( __('Tags: '), ', ', ''); ?>
 				<?php posted_on(); ?>
 			</div>
-			<?php edit_post_link(__('Edit this entry'),'','.'); ?>
+			<?php edit_post_link(__('Edit this entry'), '', '.'); ?>
 		</article>
-	<?php comments_template(); ?>
+		<?php comments_template(); ?>
 	<?php endwhile; endif; ?>
-<?php post_navigation(); ?>
+	<?php post_navigation(); ?>
 <?php get_footer(); ?>
